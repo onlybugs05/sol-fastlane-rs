@@ -265,8 +265,10 @@ async fn main() -> anyhow::Result<()> {
 
         Commands::Monitor { endpoints, interval_ms } => {
             println!("📡 sol-fastlane: Starting Dynamic Connection Pool live monitor...\n");
-            let mut pool_cfg = PoolConfig::default();
-            pool_cfg.probe_interval_ms = interval_ms;
+            let pool_cfg = PoolConfig {
+                probe_interval_ms: interval_ms,
+                ..Default::default()
+            };
 
             let pool = DynamicConnectionPool::new(pool_cfg);
             for ep in endpoints {
@@ -325,9 +327,11 @@ async fn main() -> anyhow::Result<()> {
 
         Commands::Failover { primary, backup } => {
             println!("🔄 sol-fastlane: Simulating Dynamic Connection Pool Failover...\n");
-            let mut pool_cfg = PoolConfig::default();
-            pool_cfg.failover_retries = 2;
-            pool_cfg.request_timeout_ms = 1500;
+            let pool_cfg = PoolConfig {
+                failover_retries: 2,
+                request_timeout_ms: 1500,
+                ..Default::default()
+            };
 
             let pool = DynamicConnectionPool::new(pool_cfg);
             pool.add_endpoint(EndpointConfig::new("Primary (Degraded/Down)", &primary));

@@ -28,7 +28,9 @@ Benchmarks executed across 1,000 concurrent RPC dispatches simulating realistic 
 | **P99 Latency** | 1,840.5 ms | **648.1 ms** | **-64.8%** |
 | **Failover Downtime** | Manual restart | **Automatic (< 2.4 ms)** | **Zero downtime** |
 | **Dropped Request Rate** | 18.4% | **0.0%** | **100% landing** |
-| **Memory Allocation Overhead** | Dynamic heap reallocations | **Zero-allocation ring buffers** | **Minimal CPU / RAM footprint** |
+| **Memory Allocation Overhead** | Dynamic heap reallocations | **Minimal-allocation asynchronous dispatch engine** | **Minimal CPU / RAM footprint** |
+
+*\* Synthetic benchmark executed across a simulated 3-node cluster with controlled latency injection and 30% synthetic packet loss simulating degraded RPC nodes.*
 
 ---
 

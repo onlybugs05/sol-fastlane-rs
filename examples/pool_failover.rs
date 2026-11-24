@@ -7,9 +7,11 @@ use std::time::Duration;
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("=== sol-fastlane Connection Pool & Fee Estimator Example ===");
 
-    let mut config = PoolConfig::default();
-    config.probe_interval_ms = 1000;
-    config.failover_retries = 2;
+    let config = PoolConfig {
+        probe_interval_ms: 1000,
+        failover_retries: 2,
+        ..Default::default()
+    };
 
     let pool = DynamicConnectionPool::new(config);
 

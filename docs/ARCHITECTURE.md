@@ -8,7 +8,7 @@ This document outlines the low-latency design, mathematical scoring models, and 
 
 `sol-fastlane` is engineered for high-frequency trading bots, DeFi protocols, and automated execution engines where transaction landing certainty and microsecond routing precision directly dictate PnL.
 
-- **Zero-Allocation Hot Paths:** Critical latency polling and failover dispatch minimize heap allocations on query cycles.
+- **Minimal-Allocation Hot Paths:** Critical latency polling and failover dispatch minimize heap allocations on query cycles.
 - **Lock-Free / Low-Contention State:** Internal telemetry uses cache-line aligned atomic integers (`AtomicU64`) and fine-grained `parking_lot::RwLock` to eliminate thread starvation.
 - **Fail-Secure by Default:** If all RPC endpoints experience cluster-wide partitioning, the engine halts unsafe execution rather than returning unverified dummy data.
 

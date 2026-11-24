@@ -19,7 +19,7 @@
 
 **Eliminate transaction drop rates, RPC jitter, and stale-quote reverts across the Solana network.**
 
-[Quick Start](#-quick-start) • [Architecture](docs/ARCHITECTURE.md) • [Benchmarks](docs/BENCHMARKS.md) • [Integration Guide](docs/INTEGRATION_GUIDE.md)
+[Quick Start](#-quick-start) • [Architecture](docs/ARCHITECTURE.md) • [Benchmarks](docs/BENCHMARKS.md) • [Integration Guide](docs/INTEGRATION_GUIDE.md) • [Grant Proposal](sol-fastlane-proposal.md)
 
 </div>
 
@@ -38,7 +38,7 @@ In high-performance DeFi execution, MEV, and automated trading, transactions fai
 
 ## 🛡️ The Solution: `sol-fastlane`
 
-`sol-fastlane` is a zero-allocation, asynchronous Rust engine and developer CLI that continuously benchmarks RPC health, measures WebSocket slot propagation jitter, and auto-routes transactions with **sub-millisecond failover**.
+`sol-fastlane` is a minimal-allocation, asynchronous Rust engine and developer CLI that continuously benchmarks RPC health, measures WebSocket slot propagation jitter, and auto-routes transactions with **sub-millisecond failover**.
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -83,6 +83,8 @@ Evaluated against live Solana mainnet-beta under node degradation stress-tests (
 | **Failover Reaction** | Manual / Reconnect error | **< 2.4 ms (Instant)** | **Zero downtime** |
 | **Dropped Request Rate** | 18.4% | **0.0%** | **100% Landing** |
 
+*\* Synthetic benchmark executed across a simulated 3-node cluster with controlled latency injection and 30% synthetic packet loss simulating degraded RPC nodes.*
+
 *See full test methodology in [docs/BENCHMARKS.md](docs/BENCHMARKS.md).*
 
 ---
@@ -92,10 +94,6 @@ Evaluated against live Solana mainnet-beta under node degradation stress-tests (
 ### 1. Build and Run the CLI Suite
 
 ```bash
-# Clone the repository
-git clone https://github.com/onlybugs05/sol-fastlane-rs.git
-cd sol-fastlane-rs
-
 # Build release binaries
 cargo build --release
 ```
@@ -192,6 +190,7 @@ cargo run -p sol-fastlane-core --example anchor_dapp_integration
 - **[Systems Architecture & Mathematical Health Scoring](docs/ARCHITECTURE.md)**: Formulas for latency penalty, slot lag derivation, and WebSocket jitter math.
 - **[Benchmark Methodology & Latency Analysis](docs/BENCHMARKS.md)**: Full stress-test results, P50/P90/P99 latency comparisons, and fee landing curves.
 - **[Developer Integration Guide](docs/INTEGRATION_GUIDE.md)**: Step-by-step recipes for Anchor clients, liquidators, and trading bots.
+- **[Grant Proposal & Scope](sol-fastlane-proposal.md)**: Detailed breakdown for foundation evaluators.
 
 ---
 

@@ -12,10 +12,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("=== sol-fastlane: Solana & Anchor Client Integration Example ===\n");
 
     // 1. Configure the connection pool with desired health thresholds
-    let mut pool_cfg = PoolConfig::default();
-    pool_cfg.probe_interval_ms = 1000;
-    pool_cfg.failover_retries = 2;
-    pool_cfg.max_slot_lag = 3;
+    let pool_cfg = PoolConfig {
+        probe_interval_ms: 1000,
+        failover_retries: 2,
+        max_slot_lag: 3,
+        ..Default::default()
+    };
 
     let pool = DynamicConnectionPool::new(pool_cfg);
 
