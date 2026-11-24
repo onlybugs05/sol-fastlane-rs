@@ -1,0 +1,24 @@
+[package]
+name = "sol-fastlane-core"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Core async latency probing, dynamic connection pooling, and priority fee engine for Solana"
+repository.workspace = true
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+futures-util = "0.3"
+tokio-tungstenite = { version = "0.28", features = ["rustls-tls-webpki-roots"] }
+chrono = { version = "0.4", features = ["serde"] }
+tracing = "0.1"
+parking_lot = "0.12"
+url = "2.5"
+
+[dev-dependencies]
+tokio-test = "0.4"

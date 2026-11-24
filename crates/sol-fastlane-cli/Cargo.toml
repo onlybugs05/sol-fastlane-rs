@@ -1,0 +1,24 @@
+[package]
+name = "sol-fastlane-cli"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "CLI dashboard & benchmarking tool for sol-fastlane"
+repository.workspace = true
+
+[[bin]]
+name = "sol-fastlane"
+path = "src/main.rs"
+
+[dependencies]
+sol-fastlane-core = { path = "../sol-fastlane-core" }
+tokio = { version = "1", features = ["full"] }
+clap = { version = "4.5", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+comfy-table = "7.1"
+crossterm = "0.28"
+chrono = "0.4"
+anyhow = "1.0"
+
